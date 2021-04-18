@@ -9,6 +9,10 @@ body {
   text-align: center;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 /* spacer */
 
 .spacer--extra-extra-small {
