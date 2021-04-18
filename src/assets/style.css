@@ -75,6 +75,14 @@ body {
   padding: 1rem;
 }
 
+.section-container-wide {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: calc(100%-2rem);
+  background-color: #fff;
+  padding: 1rem;
+}
+
 /* 見出し */
 
 .heading-one {
