@@ -1,6 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router";
-import { Home, Reset, SignIn, SignUp, MovieMemoEdit } from "./templates";
+import {
+  Home,
+  Reset,
+  SignIn,
+  SignUp,
+  MovieMemo,
+  MovieMemoEdit,
+} from "./templates";
 import Auth from "./Auth";
 
 const Router = () => {
@@ -12,6 +19,7 @@ const Router = () => {
 
       <Auth>
         <Route exact path={"(/)?"} component={Home} />
+        <Route exact path={"/moviememo/edit/"} component={MovieMemo} />
         <Route path={"/moviememo/edit/(/:id)?"} component={MovieMemoEdit} />
       </Auth>
     </Switch>

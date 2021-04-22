@@ -24,7 +24,13 @@ const Home = () => {
 
   const PageTransition = () => {
     if (url !== "") {
-      history.push(`/moviememo/edit/${url}`, { url: url });
+      const urlid = url.match(
+        /(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/
+      );
+
+      const videoid = urlid[1];
+
+      history.push(`/moviememo/edit`, { videoid: videoid });
     } else {
       alert("URLが貼り付けられていません。");
     }
