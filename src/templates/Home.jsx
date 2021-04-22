@@ -24,7 +24,7 @@ const Home = () => {
 
   const PageTransition = () => {
     if (url !== "") {
-      history.push(`/moviememoedit/${url}`, { url: url });
+      history.push(`/moviememo/edit/${url}`, { url: url });
     } else {
       alert("URLが貼り付けられていません。");
     }
@@ -32,7 +32,6 @@ const Home = () => {
 
   return (
     <section>
-      <h2 className="heading-one center">YoutubeMemoEdit</h2>
       <button onClick={() => dispatch(signOut())}>SIGNOUT</button>
       <p>ユーザーID:{uid}</p>
       <p>ユーザー名{username}</p>
