@@ -1,6 +1,7 @@
 /* 全て */
 body {
   background-color: #fca1c1;
+  box-sizing: border-box;
 }
 
 /* 使い回し */
@@ -11,6 +12,15 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bg-white {
+  background-color: #fff;
 }
 
 /* spacer */
@@ -32,6 +42,15 @@ body {
 }
 
 /* width */
+
+.full-width {
+  width: 100%;
+}
+
+.ninety-width {
+  width: 90%;
+}
+
 .half-width {
   width: 50%;
 }
@@ -78,6 +97,13 @@ body {
 .section-container-wide {
   margin: 0 auto;
   max-width: 1000px;
+  width: calc(100%-2rem);
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.section-container-full {
+  margin: 0 auto;
   width: calc(100%-2rem);
   background-color: #fff;
   padding: 1rem;

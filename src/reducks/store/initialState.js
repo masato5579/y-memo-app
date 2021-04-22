@@ -1,6 +1,8 @@
 //Storeの初期値
 const initialState = {
-  products: {},
+  memos: {
+    list: [],
+  },
   users: {
     isSignedIn: false,
     role: "",
