@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import {
   MovieCard,
@@ -6,11 +6,10 @@ import {
   PrimaryButton,
   SelectBox,
 } from "../components/Ulkit";
-import { db } from "../firebase";
 
 import { saveMemo } from "../reducks/memos/operations";
 
-const MovieMemoEdit = (props) => {
+const MovieMemo = (props) => {
   const dispatch = useDispatch();
 
   let id = window.location.pathname.split("/moviememo/edit")[1];
@@ -19,18 +18,15 @@ const MovieMemoEdit = (props) => {
     id = id.split("/")[1];
   }
 
-  // const videoid = props.location.state.videoid;
+  const videoid = props.location.state.videoid;
 
-  // const youtubeurl = `https://www.youtube.com/embed/${videoid}`;
+  const youtubeurl = `https://www.youtube.com/embed/${videoid}`;
 
-  // const thumenail = `https://img.youtube.com/vi/${videoid}`;
+  const thumenail = `https://img.youtube.com/vi/${videoid}`;
 
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
-    [category, setCategory] = useState(""),
-    [videoid, setVideoid] = useState(""),
-    [youtubeurl, setYoutubeurl] = useState(""),
-    [thumenail, setThumenail] = useState("");
+    [category, setCategory] = useState("");
 
   const InputTitle = useCallback(
     (e) => {
@@ -60,23 +56,6 @@ const MovieMemoEdit = (props) => {
       name: "アニメ",
     },
   ];
-
-  useEffect(() => {
-    if (id !== "") {
-      db.collection("memos")
-        .doc(id)
-        .get()
-        .then((snapshot) => {
-          const data = snapshot.data();
-          setTitle(data.title);
-          setMemo(data.memo);
-          setCategory(data.category);
-          setVideoid(data.videoid);
-          setYoutubeurl(data.youtubeurl);
-          setThumenail(data.thumenail);
-        });
-    }
-  }, [id]);
 
   return (
     <section className="flex display-block">
@@ -121,15 +100,15 @@ const MovieMemoEdit = (props) => {
         />
         <div className="spacer--small" />
         <PrimaryButton
-          label={"メモを編集する"}
+          label={"メモを保存する"}
           onClick={() =>
             dispatch(
               saveMemo(
                 id,
                 title,
                 memo,
-                videoid,
                 category,
+                videoid,
                 youtubeurl,
                 thumenail
               )
@@ -141,4 +120,4 @@ const MovieMemoEdit = (props) => {
   );
 };
 
-export default MovieMemoEdit;
+export default MovieMemo;
