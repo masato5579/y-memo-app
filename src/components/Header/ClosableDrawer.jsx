@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import HomeIcon from "@material-ui/icons/Home";
 import NoteIcon from "@material-ui/icons/Note";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { TextInput } from "../Ulkit/index";
@@ -58,6 +59,13 @@ const ClosableDrawer = (props) => {
   const menus = [
     {
       func: selectMenu,
+      label: "ホーム",
+      icon: <HomeIcon />,
+      id: "home",
+      value: "/",
+    },
+    {
+      func: selectMenu,
       label: "お気に入り一覧",
       icon: <FavoriteBorderIcon />,
       id: "favorite",
@@ -68,7 +76,7 @@ const ClosableDrawer = (props) => {
       label: "メモ一覧",
       icon: <NoteIcon />,
       id: "memolist",
-      value: "/memolist",
+      value: "/moviememo/list",
     },
     {
       func: selectMenu,

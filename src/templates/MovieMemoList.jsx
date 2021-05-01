@@ -8,8 +8,6 @@ const MovieMemoList = () => {
   const selector = useSelector((state) => state);
   const memos = getMemos(selector);
 
-  console.log(memos);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +28,7 @@ const MovieMemoList = () => {
               id={memo.id}
               title={memo.title}
               memo={memo.memo}
+              favo={memo.favo}
             />
             <div className="spacer--medium" />
           </div>

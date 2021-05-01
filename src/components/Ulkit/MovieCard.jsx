@@ -4,6 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
   root: {
@@ -12,6 +14,9 @@ const useStyles = makeStyles({
   },
   cardcontent: {
     height: "100%",
+  },
+  button: {
+    textAlign: "left",
   },
 });
 
@@ -27,8 +32,23 @@ const MovieCard = (props) => {
         <Typography gutterBottom variant="h5" component="h2">
           URL: {props.url}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Youtubeでメモをとって学習に役立てよう
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          className={classes.button}
+        >
+          <Button
+            onClick={() => props.FavoToggle()}
+            style={{ color: props.favo ? "red" : "#000" }}
+          >
+            <FavoriteIcon />
+            {props.favo ? (
+              <p>お気に入り登録を解除する</p>
+            ) : (
+              <p>お気に入りに登録する</p>
+            )}
+          </Button>
         </Typography>
       </CardContent>
     </Card>
