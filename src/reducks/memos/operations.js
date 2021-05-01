@@ -1,8 +1,29 @@
 import { FirebaseTimeStamp, db } from "../../firebase/";
 import { push } from "connected-react-router";
-import { fetchMemosAction } from "./actions";
+import { deleteMemoAction, fetchMemosAction } from "./actions";
 
 const memosRef = db.collection("memos");
+
+export const deleteMemo = (id) => {
+  return async (dispatch, getState) => {
+    let result = window.confirm(
+      "このメモを削除します。本当によろしいでしょうか？"
+    );
+
+    if (result) {
+      memosRef
+        .doc(id)
+        .delete()
+        .then(() => {
+          const prevMemos = getState().memos.list;
+          const nextMemos = prevMemos.filter((memo) => memo.id !== id);
+          dispatch(deleteMemoAction(nextMemos));
+        });
+    } else {
+      return;
+    }
+  };
+};
 
 export const fetchMemos = () => {
   return async (dispatch) => {

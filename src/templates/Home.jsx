@@ -1,16 +1,13 @@
 import React, { useState, useCallback } from "react";
-import { getUserId, getUserName } from "../reducks/users/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../reducks/users/operations";
+// import { getUserName } from "../reducks/users/selectors";
+// import { useSelector } from "react-redux";
 import { PrimaryButton, TextInput } from "../components/Ulkit/";
 import { useHistory } from "react-router";
 import { MovieMemoList } from "./index";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const selector = useSelector((state) => state);
-  const uid = getUserId(selector);
-  const username = getUserName(selector);
+  // const selector = useSelector((state) => state);
+  // const username = getUserName(selector);
 
   const history = useHistory();
 
@@ -39,9 +36,7 @@ const Home = () => {
 
   return (
     <section>
-      <button onClick={() => dispatch(signOut())}>SIGNOUT</button>
-      <p>ユーザーID:{uid}</p>
-      <p>ユーザー名{username}</p>
+      <div className="spacer--medium" />
       <div className="width-fifty section-container-narrow">
         <h3>YoutubeのURLを貼ってください</h3>
         <TextInput
@@ -60,7 +55,7 @@ const Home = () => {
           label={"Youtubeメモを開始する"}
         />
       </div>
-      <div className="spacer--small" />
+      <div className="sspacer--medium" />
       <div>
         <MovieMemoList />
       </div>
