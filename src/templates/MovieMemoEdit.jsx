@@ -77,7 +77,7 @@ const MovieMemoEdit = (props) => {
       <div className="half-width ">
         <MovieCard url={youtubeurl} />
       </div>
-      <div className="section-container-narrow half-width full-height border-pink">
+      <div className="section-container-narrow-top half-width ">
         <TextInput
           fullWidth={true}
           label={"タイトル"}
@@ -109,7 +109,7 @@ const MovieMemoEdit = (props) => {
           multiline={true}
           required={true}
           onChange={InputMemo}
-          rows={18}
+          rows={15}
           value={memo}
           type={"text"}
         />
