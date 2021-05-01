@@ -1,6 +1,6 @@
 /* 全て */
 body {
-  background-color: #fca1c1;
+  background-color: #ffa400;
   box-sizing: border-box;
 }
 
@@ -42,6 +42,11 @@ body {
 }
 
 /* width */
+
+.ninety-width-center {
+  width: 90%;
+  margin: 0 auto;
+}
 
 .full-width {
   width: 100%;
@@ -116,4 +121,20 @@ body {
   margin: 0 auto 1rem auto;
   background: #51ecb2;
   padding: 20px 0;
+}
+
+.heading-two {
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* 文字が見えなくなったら改行 */
+
+.over-flow-wrap {
+  word-break: break-all;
+  width: 90%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }

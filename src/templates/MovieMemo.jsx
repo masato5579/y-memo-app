@@ -12,7 +12,7 @@ import { saveMemo } from "../reducks/memos/operations";
 const MovieMemo = (props) => {
   const dispatch = useDispatch();
 
-  let id = window.location.pathname.split("/moviememo/edit")[1];
+  let id = window.location.pathname.split("/moviememo/")[1];
 
   if (id !== "") {
     id = id.split("/")[1];

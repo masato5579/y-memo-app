@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../reducks/users/operations";
 import { PrimaryButton, TextInput } from "../components/Ulkit/";
 import { useHistory } from "react-router";
+import { MovieMemoList } from "./index";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Home = () => {
 
       const videoid = urlid[1];
 
-      history.push(`/moviememo/edit`, { videoid: videoid });
+      history.push(`/moviememo/`, { videoid: videoid });
     } else {
       alert("URLが貼り付けられていません。");
     }
@@ -58,6 +59,10 @@ const Home = () => {
           onClick={PageTransition}
           label={"Youtubeメモを開始する"}
         />
+      </div>
+      <div className="spacer--small" />
+      <div>
+        <MovieMemoList />
       </div>
     </section>
   );

@@ -1,7 +1,24 @@
 import { FirebaseTimeStamp, db } from "../../firebase/";
 import { push } from "connected-react-router";
+import { fetchMemosAction } from "./actions";
 
 const memosRef = db.collection("memos");
+
+export const fetchMemos = () => {
+  return async (dispatch) => {
+    memosRef
+      .orderBy("updated_at", "desc")
+      .get()
+      .then((snapshots) => {
+        const memoList = [];
+        snapshots.forEach((snapshot) => {
+          const memo = snapshot.data();
+          memoList.push(memo);
+        });
+        dispatch(fetchMemosAction(memoList));
+      });
+  };
+};
 
 export const saveMemo = (
   id,
