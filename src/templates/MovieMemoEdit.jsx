@@ -19,12 +19,6 @@ const MovieMemoEdit = (props) => {
     id = id.split("/")[1];
   }
 
-  // const videoid = props.location.state.videoid;
-
-  // const youtubeurl = `https://www.youtube.com/embed/${videoid}`;
-
-  // const thumenail = `https://img.youtube.com/vi/${videoid}`;
-
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
     [category, setCategory] = useState(""),

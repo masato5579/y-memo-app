@@ -7,6 +7,7 @@ import {
   SignUp,
   MovieMemo,
   MovieMemoEdit,
+  MovieMemoList,
 } from "./templates";
 import Auth from "./Auth";
 
@@ -19,7 +20,8 @@ const Router = () => {
 
       <Auth>
         <Route exact path={"(/)?"} component={Home} />
-        <Route exact path={"/moviememo/edit/"} component={MovieMemo} />
+        <Route exact path={"/moviememo/list"} component={MovieMemoList} />
+        <Route exact path={"/moviememo/"} component={MovieMemo} />
         <Route path={"/moviememo/edit/(/:id)?"} component={MovieMemoEdit} />
       </Auth>
     </Switch>
