@@ -26,7 +26,8 @@ const MovieMemo = (props) => {
 
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
-    [category, setCategory] = useState("");
+    [category, setCategory] = useState(""),
+    [favo, setFavo] = useState(false);
 
   const InputTitle = useCallback(
     (e) => {
@@ -41,6 +42,10 @@ const MovieMemo = (props) => {
     },
     [setMemo]
   );
+
+  const FavoToggle = () => {
+    setFavo(!favo);
+  };
 
   const categories = [
     {
@@ -60,7 +65,7 @@ const MovieMemo = (props) => {
   return (
     <section className="flex display-block">
       <div className="half-width ">
-        <MovieCard url={youtubeurl} />
+        <MovieCard url={youtubeurl} favo={favo} FavoToggle={FavoToggle} />
       </div>
       <div className="section-container-narrow-top  half-width ">
         <TextInput
@@ -110,7 +115,8 @@ const MovieMemo = (props) => {
                 category,
                 videoid,
                 youtubeurl,
-                thumenail
+                thumenail,
+                favo
               )
             )
           }

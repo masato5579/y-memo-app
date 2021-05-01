@@ -48,7 +48,8 @@ export const saveMemo = (
   category,
   videoid,
   youtubeurl,
-  thumenail
+  thumenail,
+  favo
 ) => {
   return async (dispatch) => {
     const timestamp = FirebaseTimeStamp.now();
@@ -58,6 +59,7 @@ export const saveMemo = (
       memo: memo,
       category: category,
       videoid: videoid,
+      favo: favo,
       youtubeurl: youtubeurl,
       thumenail: thumenail,
       updated_at: timestamp,
@@ -90,5 +92,19 @@ export const saveMemo = (
           throw new Error(error);
         });
     }
+  };
+};
+
+export const saveFavo = (id, favo) => {
+  return async (dispatch) => {
+    const timestamp = FirebaseTimeStamp.now();
+    const newfavo = !favo;
+
+    return memosRef
+      .doc(id)
+      .set({ id: id, favo: newfavo, updated_at: timestamp }, { merge: true })
+      .catch((error) => {
+        throw new Error(error);
+      });
   };
 };

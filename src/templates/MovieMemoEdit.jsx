@@ -24,7 +24,8 @@ const MovieMemoEdit = (props) => {
     [category, setCategory] = useState(""),
     [videoid, setVideoid] = useState(""),
     [youtubeurl, setYoutubeurl] = useState(""),
-    [thumenail, setThumenail] = useState("");
+    [thumenail, setThumenail] = useState(""),
+    [favo, setFavo] = useState(false);
 
   const InputTitle = useCallback(
     (e) => {
@@ -39,6 +40,10 @@ const MovieMemoEdit = (props) => {
     },
     [setMemo]
   );
+
+  const FavoToggle = () => {
+    setFavo(!favo);
+  };
 
   const categories = [
     {
@@ -68,6 +73,7 @@ const MovieMemoEdit = (props) => {
           setVideoid(data.videoid);
           setYoutubeurl(data.youtubeurl);
           setThumenail(data.thumenail);
+          setFavo(data.favo);
         });
     }
   }, [id]);
@@ -75,7 +81,7 @@ const MovieMemoEdit = (props) => {
   return (
     <section className="flex display-block">
       <div className="half-width ">
-        <MovieCard url={youtubeurl} />
+        <MovieCard url={youtubeurl} favo={favo} FavoToggle={FavoToggle} />
       </div>
       <div className="section-container-narrow-top half-width ">
         <TextInput
@@ -125,7 +131,8 @@ const MovieMemoEdit = (props) => {
                 videoid,
                 category,
                 youtubeurl,
-                thumenail
+                thumenail,
+                favo
               )
             )
           }
