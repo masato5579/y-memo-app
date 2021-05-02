@@ -6,13 +6,15 @@ import {
   PrimaryButton,
   SelectBox,
 } from "../components/Ulkit";
-
+// import { FirebaseTimeStamp } from "../firebase";
+// import { getUserId, getUserName } from "../reducks/users/selectors";
 import { saveMemo } from "../reducks/memos/operations";
+// import { addMemoMyself } from "../reducks/users/operations";
 
 const MovieMemo = (props) => {
   const dispatch = useDispatch();
 
-  let id = window.location.pathname.split("/moviememo/")[1];
+  let id = window.location.pathname.split("/moviememo")[1];
 
   if (id !== "") {
     id = id.split("/")[1];
@@ -106,7 +108,7 @@ const MovieMemo = (props) => {
         <div className="spacer--small" />
         <PrimaryButton
           label={"メモを保存する"}
-          onClick={() =>
+          onClick={() => {
             dispatch(
               saveMemo(
                 id,
@@ -118,8 +120,8 @@ const MovieMemo = (props) => {
                 thumenail,
                 favo
               )
-            )
-          }
+            );
+          }}
         />
       </div>
     </section>

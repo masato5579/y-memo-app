@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListCard } from "../components/Ulkit";
 import { fetchMemos } from "../reducks/memos/operations";
 import { getMemos } from "../reducks/memos/selectors";
-import { db } from "../firebase/index";
+import { getUserId } from "../reducks/users/selectors";
 
-const MovieMemoList = () => {
-  const dispatch = useDispatch();
+const MemoMyselfList = () => {
   const selector = useSelector((state) => state);
-  const memos = getMemos(selector);
+  const loginUserId = getUserId(selector);
+  let memos = getMemos(selector);
+
+  memos = memos.filter((memo) => memo.uid === loginUserId);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchMemos());
@@ -17,7 +21,7 @@ const MovieMemoList = () => {
   return (
     <section className="ninety-width-center">
       <div className="spacer--medium" />
-      <h2 className="heading-two">メモ一覧</h2>
+      <h2 className="heading-two">自分のメモ一覧</h2>
       <div className="spacer--medium" />
       {memos.length > 0 &&
         memos.map((memo) => (
@@ -38,4 +42,4 @@ const MovieMemoList = () => {
   );
 };
 
-export default MovieMemoList;
+export default MemoMyselfList;

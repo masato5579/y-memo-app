@@ -136,3 +136,19 @@ export const signOut = () => {
     });
   };
 };
+
+// export const addMemoMyself = (addedMemo) => {
+//   return async (dispatch, getState) => {
+//     const uid = getState().users.uid;
+//     console.log(uid);
+//     const memoMyselfRef = db
+//       .collection("users")
+//       .doc(uid)
+//       .collection("memomyself")
+//       .doc();
+
+//     addedMemo["memoId"] = memoMyselfRef.id;
+//     await memoMyselfRef.set(addedMemo);
+//     dispatch(push("/"));
+//   };
+// };

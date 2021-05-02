@@ -5,3 +5,5 @@ export { default as SignUp } from "./SignUp";
 export { default as MovieMemo } from "./MovieMemo";
 export { default as MovieMemoEdit } from "./MovieMemoEdit";
 export { default as MovieMemoList } from "./MovieMemoList";
+export { default as FavoList } from "./FavoList";
+export { default as MemoMyselfList } from "./MemoMyselfList";

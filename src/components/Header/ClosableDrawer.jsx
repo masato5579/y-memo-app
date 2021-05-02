@@ -69,7 +69,7 @@ const ClosableDrawer = (props) => {
       label: "お気に入り一覧",
       icon: <FavoriteBorderIcon />,
       id: "favorite",
-      value: "/favorite/",
+      value: "/favorite",
     },
     {
       func: selectMenu,
@@ -98,7 +98,10 @@ const ClosableDrawer = (props) => {
         classes={{ paper: classes.drawerPaper }}
         ModalProps={{ keepMounted: true }}
       >
-        <div>
+        <div
+          onClose={(e) => props.onClose(e)}
+          onKeyDown={(e) => props.onClose(e)}
+        >
           <div className={classes.searchField}>
             <TextInput
               fullWidth={false}
