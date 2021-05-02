@@ -28,7 +28,7 @@ const Home = () => {
 
       const videoid = urlid[1];
 
-      history.push(`/moviememo/`, { videoid: videoid });
+      history.push(`/moviememo`, { videoid: videoid });
     } else {
       alert("URLが貼り付けられていません。");
     }

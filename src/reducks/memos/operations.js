@@ -51,8 +51,9 @@ export const saveMemo = (
   thumenail,
   favo
 ) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     const timestamp = FirebaseTimeStamp.now();
+    const uid = getState().users.uid;
 
     const data = {
       title: title,
@@ -62,6 +63,7 @@ export const saveMemo = (
       favo: favo,
       youtubeurl: youtubeurl,
       thumenail: thumenail,
+      uid: uid,
       updated_at: timestamp,
     };
 
@@ -74,8 +76,8 @@ export const saveMemo = (
         .doc(id)
         .set(data)
         .then(() => {
-          alert("メモの登録が完了しました。");
           dispatch(push("/"));
+          alert("メモの登録が完了しました。");
         })
         .catch((error) => {
           throw new Error(error);
@@ -85,8 +87,8 @@ export const saveMemo = (
         .doc(id)
         .set(data, { merge: true })
         .then(() => {
-          alert("メモの編集が完了しました");
           dispatch(push("/"));
+          alert("メモの編集が完了しました");
         })
         .catch((error) => {
           throw new Error(error);
