@@ -40,22 +40,9 @@ const ListCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const thumenail = props.thumenail + "/default.jpg";
-
   const [favo, setFavo] = useState(props.favo);
 
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    if (props.uid !== undefined) {
-      const usersRef = db.collection("users").doc(props.uid);
-      usersRef.get().then((doc) => {
-        const data = doc.data();
-        const userName = data.username;
-        setUserName(userName);
-      });
-    }
-  }, [props.uid]);
+  const username = props.username;
 
   useEffect(() => {
     const favoRef = db
@@ -80,7 +67,7 @@ const ListCard = (props) => {
     dispatch(
       savefavo({
         added_at: timestamp,
-        thumenail: thumenail,
+        thumenail: props.thumenail,
         id: props.id,
         title: props.title,
         memo: props.memo,
@@ -88,7 +75,7 @@ const ListCard = (props) => {
         videoid: props.videoid,
         youtubeurl: props.youtubeurl,
         favo: newfavo,
-        username: userName,
+        username: username,
       })
     );
   };
@@ -98,7 +85,7 @@ const ListCard = (props) => {
       <div className={classes.detail}>
         <CardMedia
           className={classes.cover}
-          image={thumenail}
+          image={props.thumenail}
           title={props.title}
         />
       </div>
@@ -117,7 +104,7 @@ const ListCard = (props) => {
         </Typography>
         <div className="spacer--extra-extra-small" />
         <div className="right-bottom-position">
-          ユーザー名{userName}
+          ユーザー名{username}
           <IconButton
             onClick={() => {
               addFavo();

@@ -25,14 +25,15 @@ const MemoMyselfList = () => {
       <div className="spacer--medium" />
       {memos.length > 0 &&
         memos.map((memo) => (
-          <div>
+          <div key={memo.id}>
             <ListCard
               thumenail={memo.thumenail}
-              key={memo.id}
               id={memo.id}
               title={memo.title}
               memo={memo.memo}
-              favo={memo.favo}
+              category={memo.category}
+              videoid={memo.videoid}
+              youtubeurl={memo.youtubeurl}
               uid={memo.uid}
             />
             <div className="spacer--medium" />
