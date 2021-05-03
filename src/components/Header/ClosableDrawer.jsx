@@ -17,7 +17,6 @@ import { TextInput } from "../Ulkit/index";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
 import { signOut } from "../../reducks/users/operations";
-// import { db } from "../../firebase";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {

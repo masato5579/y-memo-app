@@ -7,3 +7,4 @@ export { default as MovieMemoEdit } from "./MovieMemoEdit";
 export { default as MovieMemoList } from "./MovieMemoList";
 export { default as FavoList } from "./FavoList";
 export { default as MemoMyselfList } from "./MemoMyselfList";
+export { default as Profile } from "./Profile";

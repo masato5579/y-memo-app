@@ -4,6 +4,7 @@ const initialState = {
     list: [],
   },
   users: {
+    favos: [],
     isSignedIn: false,
     role: "",
     uid: "",

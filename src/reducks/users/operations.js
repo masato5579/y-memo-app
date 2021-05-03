@@ -1,6 +1,6 @@
 import { push } from "connected-react-router";
 import { auth, db, FirebaseTimeStamp } from "../../firebase/index";
-import { signInAction, signOutAction } from "./actions";
+import { signInAction, signOutAction, fetchFavosAction } from "./actions";
 
 export const listenAuthState = () => {
   return async (dispatch) => {
@@ -137,18 +137,79 @@ export const signOut = () => {
   };
 };
 
-// export const addMemoMyself = (addedMemo) => {
-//   return async (dispatch, getState) => {
-//     const uid = getState().users.uid;
-//     console.log(uid);
-//     const memoMyselfRef = db
-//       .collection("users")
-//       .doc(uid)
-//       .collection("memomyself")
-//       .doc();
+export const updateProfile = (username, email) => {
+  return async (dispatch) => {
+    let user = auth.currentUser;
+    user
+      .updateEmail(email)
+      .then(() => {
+        if (user) {
+          const uid = user.uid;
+          const timestamp = FirebaseTimeStamp.now();
 
-//     addedMemo["memoId"] = memoMyselfRef.id;
-//     await memoMyselfRef.set(addedMemo);
-//     dispatch(push("/"));
-//   };
-// };
+          db.collection("users")
+            .doc(uid)
+            .set(
+              { email: email, updated_at: timestamp, username: username },
+              { merge: true }
+            )
+            .then(() => {
+              dispatch(push("/profile"));
+              alert("プロフィールの変更が完了しました。");
+            })
+            .catch(() => {
+              alert(
+                "プロフィールの変更に失敗しました。再度変更お願いいたします。"
+              );
+            });
+
+          db.collection("users").doc(uid).get();
+        }
+      })
+      .catch(() => {
+        alert(
+          "プロフィールの変更に失敗しました。再度ログインし、変更お願いします。"
+        );
+        let result = window.confirm("ログアウトしますか？");
+        if (result) {
+          signOut();
+        }
+      });
+  };
+};
+
+export const savefavo = (addedfavo) => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid;
+    const favoRef = db
+      .collection("users")
+      .doc(uid)
+      .collection("favo")
+      .doc(addedfavo.id);
+    addedfavo["favoId"] = favoRef.id;
+
+    await favoRef.set(addedfavo, { merge: true });
+
+    if (addedfavo.favo === false) {
+      favoRef.delete();
+    }
+  };
+};
+
+export const fetchFavos = () => {
+  return async (dispatch, getState) => {
+    const uid = getState().users.uid;
+    db.collection("users")
+      .doc(uid)
+      .collection("favo")
+      .get()
+      .then((snapshots) => {
+        const favoList = [];
+        snapshots.forEach((snapshot) => {
+          const favo = snapshot.data();
+          favoList.push(favo);
+        });
+        dispatch(fetchFavosAction(favoList));
+      });
+  };
+};

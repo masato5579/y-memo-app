@@ -6,10 +6,7 @@ import {
   PrimaryButton,
   SelectBox,
 } from "../components/Ulkit";
-// import { FirebaseTimeStamp } from "../firebase";
-// import { getUserId, getUserName } from "../reducks/users/selectors";
 import { saveMemo } from "../reducks/memos/operations";
-// import { addMemoMyself } from "../reducks/users/operations";
 
 const MovieMemo = (props) => {
   const dispatch = useDispatch();
@@ -28,8 +25,7 @@ const MovieMemo = (props) => {
 
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
-    [category, setCategory] = useState(""),
-    [favo, setFavo] = useState(false);
+    [category, setCategory] = useState("");
 
   const InputTitle = useCallback(
     (e) => {
@@ -44,10 +40,6 @@ const MovieMemo = (props) => {
     },
     [setMemo]
   );
-
-  const FavoToggle = () => {
-    setFavo(!favo);
-  };
 
   const categories = [
     {
@@ -67,7 +59,7 @@ const MovieMemo = (props) => {
   return (
     <section className="flex display-block">
       <div className="half-width ">
-        <MovieCard url={youtubeurl} favo={favo} FavoToggle={FavoToggle} />
+        <MovieCard url={youtubeurl} />
       </div>
       <div className="section-container-narrow-top  half-width ">
         <TextInput
@@ -117,8 +109,7 @@ const MovieMemo = (props) => {
                 category,
                 videoid,
                 youtubeurl,
-                thumenail,
-                favo
+                thumenail
               )
             );
           }}

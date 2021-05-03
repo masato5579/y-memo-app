@@ -1,14 +1,9 @@
 import React, { useState, useCallback } from "react";
-// import { getUserName } from "../reducks/users/selectors";
-// import { useSelector } from "react-redux";
 import { PrimaryButton, TextInput } from "../components/Ulkit/";
 import { useHistory } from "react-router";
 import { MovieMemoList } from "./index";
 
 const Home = () => {
-  // const selector = useSelector((state) => state);
-  // const username = getUserName(selector);
-
   const history = useHistory();
 
   const [url, setUrl] = useState("");
@@ -46,7 +41,7 @@ const Home = () => {
           required={true}
           rows={1}
           value={url}
-          type={URL}
+          type={"text"}
           onChange={InputUrl}
         />
         <div className="spacer--small" />

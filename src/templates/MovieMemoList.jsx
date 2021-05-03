@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ListCard } from "../components/Ulkit";
 import { fetchMemos } from "../reducks/memos/operations";
 import { getMemos } from "../reducks/memos/selectors";
-import { db } from "../firebase/index";
 
 const MovieMemoList = () => {
   const dispatch = useDispatch();
@@ -17,18 +16,19 @@ const MovieMemoList = () => {
   return (
     <section className="ninety-width-center">
       <div className="spacer--medium" />
-      <h2 className="heading-two">メモ一覧</h2>
+      <h2 className="heading-two">最近のメモ一覧</h2>
       <div className="spacer--medium" />
       {memos.length > 0 &&
         memos.map((memo) => (
-          <div>
+          <div key={memo.id}>
             <ListCard
               thumenail={memo.thumenail}
-              key={memo.id}
               id={memo.id}
               title={memo.title}
               memo={memo.memo}
-              favo={memo.favo}
+              category={memo.category}
+              videoid={memo.videoid}
+              youtubeurl={memo.youtubeurl}
               uid={memo.uid}
             />
             <div className="spacer--medium" />

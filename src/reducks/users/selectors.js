@@ -8,11 +8,6 @@ export const getIsSignedIn = createSelector(
   (state) => state.isSignedIn
 );
 
-// export const getMemoMyself = createSelector(
-//   [usersSelector],
-//   (state) => state.memomyself
-// );
-
 //uidの取得
 export const getUserId = createSelector([usersSelector], (state) => state.uid);
 
@@ -21,3 +16,5 @@ export const getUserName = createSelector(
   [usersSelector],
   (state) => state.username
 );
+
+export const getFavos = createSelector([usersSelector], (state) => state.favos);

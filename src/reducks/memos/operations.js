@@ -3,21 +3,29 @@ import { push } from "connected-react-router";
 import { deleteMemoAction, fetchMemosAction } from "./actions";
 
 const memosRef = db.collection("memos");
+const usersRef = db.collection("users");
 
 export const deleteMemo = (id) => {
   return async (dispatch, getState) => {
     let result = window.confirm(
       "このメモを削除します。本当によろしいでしょうか？"
     );
-
     if (result) {
       memosRef
         .doc(id)
-        .delete()
-        .then(() => {
-          const prevMemos = getState().memos.list;
-          const nextMemos = prevMemos.filter((memo) => memo.id !== id);
-          dispatch(deleteMemoAction(nextMemos));
+        .get()
+        .then((doc) => {
+          const data = doc.data();
+          const uid = data.uid;
+          usersRef.doc(uid).collection("favo").doc(id).delete();
+          memosRef
+            .doc(id)
+            .delete()
+            .then(() => {
+              const prevMemos = getState().memos.list;
+              const nextMemos = prevMemos.filter((memo) => memo.id !== id);
+              dispatch(deleteMemoAction(nextMemos));
+            });
         });
     } else {
       return;
@@ -48,8 +56,7 @@ export const saveMemo = (
   category,
   videoid,
   youtubeurl,
-  thumenail,
-  favo
+  thumenail
 ) => {
   return async (dispatch, getState) => {
     const timestamp = FirebaseTimeStamp.now();
@@ -60,7 +67,6 @@ export const saveMemo = (
       memo: memo,
       category: category,
       videoid: videoid,
-      favo: favo,
       youtubeurl: youtubeurl,
       thumenail: thumenail,
       uid: uid,
@@ -94,19 +100,5 @@ export const saveMemo = (
           throw new Error(error);
         });
     }
-  };
-};
-
-export const saveFavo = (id, favo) => {
-  return async (dispatch) => {
-    const timestamp = FirebaseTimeStamp.now();
-    const newfavo = !favo;
-
-    return memosRef
-      .doc(id)
-      .set({ id: id, favo: newfavo, updated_at: timestamp }, { merge: true })
-      .catch((error) => {
-        throw new Error(error);
-      });
   };
 };
