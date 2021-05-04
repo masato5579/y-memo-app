@@ -34,6 +34,7 @@ const Home = () => {
       <div className="spacer--medium" />
       <div className="width-fifty section-container-narrow">
         <h3>YoutubeのURLを貼ってください</h3>
+        <div className="spacer--small" />
         <TextInput
           fullWidth={true}
           label={"YoutubeURL"}
@@ -50,7 +51,7 @@ const Home = () => {
           label={"Youtubeメモを開始する"}
         />
       </div>
-      <div className="sspacer--medium" />
+      <div className="spacer--medium" />
       <div>
         <MovieMemoList />
       </div>

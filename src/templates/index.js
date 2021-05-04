@@ -8,3 +8,4 @@ export { default as MovieMemoList } from "./MovieMemoList";
 export { default as FavoList } from "./FavoList";
 export { default as MemoMyselfList } from "./MemoMyselfList";
 export { default as Profile } from "./Profile";
+export { default as Category } from "./Category";

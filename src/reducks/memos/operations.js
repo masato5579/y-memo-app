@@ -33,19 +33,21 @@ export const deleteMemo = (id) => {
   };
 };
 
-export const fetchMemos = () => {
+export const fetchMemos = (category) => {
   return async (dispatch) => {
-    memosRef
-      .orderBy("updated_at", "desc")
-      .get()
-      .then((snapshots) => {
-        const memoList = [];
-        snapshots.forEach((snapshot) => {
-          const memo = snapshot.data();
-          memoList.push(memo);
-        });
-        dispatch(fetchMemosAction(memoList));
+    let query = memosRef.orderBy("updated_at", "desc");
+    if (category !== undefined) {
+      query = category !== "" ? query.where("category", "==", category) : query;
+    }
+
+    query.get().then((snapshots) => {
+      const memoList = [];
+      snapshots.forEach((snapshot) => {
+        const memo = snapshot.data();
+        memoList.push(memo);
       });
+      dispatch(fetchMemosAction(memoList));
+    });
   };
 };
 

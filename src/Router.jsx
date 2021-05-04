@@ -10,6 +10,7 @@ import {
   MemoMyselfList,
   FavoList,
   Profile,
+  Category,
 } from "./templates";
 import Auth from "./Auth";
 
@@ -27,6 +28,7 @@ const Router = () => {
         <Route path={"/moviememo/edit/(/:id)?"} component={MovieMemoEdit} />
         <Route path={"/favorite"} component={FavoList} />
         <Route path={"/profile"} component={Profile} />
+        <Route path={"/category"} component={Category} />
       </Auth>
     </Switch>
   );

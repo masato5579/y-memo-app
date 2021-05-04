@@ -9,9 +9,15 @@ const MovieMemoList = () => {
   const selector = useSelector((state) => state);
   const memos = getMemos(selector);
 
+  const query = selector.router.location.search;
+
+  const category = /^\?category=/.test(query)
+    ? query.split("?category=")[1]
+    : "";
+
   useEffect(() => {
-    dispatch(fetchMemos());
-  }, [dispatch]);
+    dispatch(fetchMemos(category));
+  }, [query]);
 
   return (
     <section className="ninety-width-center">

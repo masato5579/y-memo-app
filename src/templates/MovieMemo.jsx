@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   MovieCard,
@@ -6,6 +6,7 @@ import {
   PrimaryButton,
   SelectBox,
 } from "../components/Ulkit";
+import { db } from "../firebase";
 import { saveMemo } from "../reducks/memos/operations";
 
 const MovieMemo = (props) => {
@@ -25,7 +26,8 @@ const MovieMemo = (props) => {
 
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
-    [category, setCategory] = useState("");
+    [category, setCategory] = useState(""),
+    [categories, setCategories] = useState([]);
 
   const InputTitle = useCallback(
     (e) => {
@@ -41,20 +43,22 @@ const MovieMemo = (props) => {
     [setMemo]
   );
 
-  const categories = [
-    {
-      id: "music",
-      name: "音楽",
-    },
-    {
-      id: "variety",
-      name: "お笑い",
-    },
-    {
-      id: "anime",
-      name: "アニメ",
-    },
-  ];
+  useEffect(() => {
+    db.collection("categories")
+      .orderBy("order", "asc")
+      .get()
+      .then((snapshots) => {
+        const list = [];
+        snapshots.forEach((snapshot) => {
+          const data = snapshot.data();
+          list.push({
+            id: data.id,
+            name: data.name,
+          });
+        });
+        setCategories(list);
+      });
+  }, []);
 
   return (
     <section className="flex display-block">

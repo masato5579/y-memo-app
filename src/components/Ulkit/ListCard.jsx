@@ -9,10 +9,11 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { push } from "connected-react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteMemo } from "../../reducks/memos/operations";
 import { savefavo } from "../../reducks/users/operations";
 import { db, FirebaseTimeStamp } from "../../firebase/index";
+import { getUserId } from "../../reducks/users/selectors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,10 +40,12 @@ const useStyles = makeStyles((theme) => ({
 const ListCard = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state);
+  const uid = getUserId(selector);
 
   const thumenail = props.thumenail + "/default.jpg";
 
-  const [favo, setFavo] = useState(props.favo);
+  const [favo, setFavo] = useState();
 
   const [userName, setUserName] = useState("");
 
@@ -60,7 +63,7 @@ const ListCard = (props) => {
   useEffect(() => {
     const favoRef = db
       .collection("users")
-      .doc(props.uid)
+      .doc(uid)
       .collection("favo")
       .doc(props.id);
 
@@ -71,7 +74,7 @@ const ListCard = (props) => {
         setFavo(AuthFavo);
       }
     });
-  }, [props.id, props.uid]);
+  }, [props.id, uid]);
 
   const addFavo = () => {
     const timestamp = FirebaseTimeStamp.now();

@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: "1.7rem",
     color: "#fff",
+    cursor: "pointer",
   },
 }));
 
