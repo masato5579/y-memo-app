@@ -10,6 +10,12 @@ const useStyles = makeStyles((theme) => ({
   fff: {
     color: "#fff",
   },
+  icon: {
+    fontSize: "2rem",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.5rem",
+    },
+  },
 }));
 
 const HeaderMenus = (props) => {
@@ -21,13 +27,13 @@ const HeaderMenus = (props) => {
         className={classes.fff}
         onClick={() => dispatch(push("/favorite"))}
       >
-        <FavoriteIcon fontSize="large" />
+        <FavoriteIcon className={classes.icon} />
       </IconButton>
       <IconButton
         className={classes.fff}
         onClick={(e) => props.handleDrawerToggle(e)}
       >
-        <MenuIcon fontSize="large" />
+        <MenuIcon className={classes.icon} />
       </IconButton>
     </>
   );

@@ -10,11 +10,13 @@ const Category = () => {
   const [categories, setCategories] = useState([]),
     [category, setCategory] = useState("");
 
+  //categoryページに遷移
   const selectMenu = (category) => {
     dispatch(push(`/category/?category=${category}`));
   };
 
   useEffect(() => {
+    //firebaseからcategoriesコレクションの取得
     db.collection("categories")
       .orderBy("order", "asc")
       .get()
@@ -33,7 +35,7 @@ const Category = () => {
 
   return (
     <section className="display-block">
-      <div className="spacer--medium" />
+      <div className="spacer--small" />
       <div className="width-fifty section-container-narrow">
         <h3>カテゴリーを選択してください</h3>
         <div className="spacer--small" />

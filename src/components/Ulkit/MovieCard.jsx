@@ -1,14 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#fff",
-    height: "100vh",
+    // height: "auto",
   },
   cardcontent: {
     height: "100%",
@@ -16,7 +14,20 @@ const useStyles = makeStyles({
   button: {
     textAlign: "left",
   },
-});
+  video: {
+    height: "710px",
+    [theme.breakpoints.down("sm")]: {
+      height: "auto",
+      minHeight: "200px",
+    },
+  },
+  url: {
+    fontSize: "1.1rem",
+    width: "95%",
+    margin: "0 auto",
+    padding: "10px 10px 10px 0",
+  },
+}));
 
 const MovieCard = (props) => {
   const classes = useStyles();
@@ -24,19 +35,17 @@ const MovieCard = (props) => {
   return (
     <Card className={classes.root}>
       <CardMedia>
-        <iframe src={props.url} title="youtube" width="100%" height="620px" />
+        <iframe
+          src={props.url}
+          title="youtube"
+          width="100%"
+          height="620px"
+          className={classes.video}
+        />
       </CardMedia>
-      <CardContent className={classes.cardcontent}>
-        <Typography gutterBottom variant="h5" component="h2">
-          URL: {props.url}
-        </Typography>
-        <Typography
-          variant="body2"
-          color="textSecondary"
-          component="p"
-          className={classes.button}
-        ></Typography>
-      </CardContent>
+      <div className={classes.url}>
+        <p className="over-flow-wrap">URL:{props.url}</p>
+      </div>
     </Card>
   );
 };

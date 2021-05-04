@@ -6,13 +6,13 @@ import { getMemos } from "../reducks/memos/selectors";
 import { getUserId } from "../reducks/users/selectors";
 
 const MemoMyselfList = () => {
+  const dispatch = useDispatch();
   const selector = useSelector((state) => state);
   const loginUserId = getUserId(selector);
   let memos = getMemos(selector);
 
+  //ログインしているユーザーのuidと一致しているmemoだけに絞る
   memos = memos.filter((memo) => memo.uid === loginUserId);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchMemos());

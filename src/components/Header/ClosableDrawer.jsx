@@ -5,7 +5,6 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import { makeStyles } from "@material-ui/styles";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
@@ -14,6 +13,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import NoteIcon from "@material-ui/icons/Note";
 import CategoryIcon from "@material-ui/icons/Category";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { makeStyles } from "@material-ui/styles";
 import { TextInput } from "../Ulkit/index";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";
@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ClosableDrawer = (props) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const { container } = props;
-  const dispatch = useDispatch();
 
   const [keyword, setKeyword] = useState("");
 
@@ -51,11 +51,13 @@ const ClosableDrawer = (props) => {
     [setKeyword]
   );
 
+  //クリックしたら選択したpathに飛ぶ
   const selectMenu = (e, path) => {
     dispatch(push(path));
     props.onClose(e);
   };
 
+  //menu達
   const menus = [
     {
       func: selectMenu,

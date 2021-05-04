@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <section>
-      <div className="spacer--medium" />
+      <div className="spacer--small" />
       <div className="width-fifty section-container-narrow">
         <h3>YoutubeのURLを貼ってください</h3>
         <div className="spacer--small" />

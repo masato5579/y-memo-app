@@ -2,6 +2,7 @@ import { push } from "connected-react-router";
 import { auth, db, FirebaseTimeStamp } from "../../firebase/index";
 import { signInAction, signOutAction, fetchFavosAction } from "./actions";
 
+//もしログインしていたらホーム、していなかったら、signinに遷移
 export const listenAuthState = () => {
   return async (dispatch) => {
     return auth.onAuthStateChanged((user) => {
@@ -29,6 +30,7 @@ export const listenAuthState = () => {
   };
 };
 
+//パスワードリセット
 export const ResetPassword = (email) => {
   return async (dispatch) => {
     if (email === "") {
@@ -48,6 +50,7 @@ export const ResetPassword = (email) => {
   };
 };
 
+//signin
 export const signIn = (email, password) => {
   //signInから2つの引数を受け取る
   return async (dispatch) => {
@@ -77,12 +80,18 @@ export const signIn = (email, password) => {
               })
             );
             dispatch(push("/"));
+          })
+          .catch(() => {
+            alert(
+              "サインインに失敗しました。記入内容を確認し、もう一度お試しください"
+            );
           });
       }
     });
   };
 };
 
+//signup
 export const signUp = (username, email, password, repassword) => {
   //signUpから4つの引数を受け取る
   return async (dispatch) => {
@@ -122,12 +131,18 @@ export const signUp = (username, email, password, repassword) => {
             .set(userInitialData)
             .then(() => {
               dispatch(push("/"));
+            })
+            .catch(() => {
+              alert(
+                "サインアップに失敗しました。記入内容を確認し、もう一度お試しください"
+              );
             });
         }
       });
   };
 };
 
+//signout
 export const signOut = () => {
   return async (dispatch) => {
     auth.signOut().then(() => {
@@ -137,6 +152,7 @@ export const signOut = () => {
   };
 };
 
+//profileの変更
 export const updateProfile = (username, email) => {
   return async (dispatch) => {
     let user = auth.currentUser;
@@ -178,6 +194,7 @@ export const updateProfile = (username, email) => {
   };
 };
 
+//お気に入りの保存
 export const savefavo = (addedfavo) => {
   return async (dispatch, getState) => {
     const uid = getState().users.uid;
@@ -197,6 +214,7 @@ export const savefavo = (addedfavo) => {
   };
 };
 
+//fanoデータの参照
 export const fetchFavos = () => {
   return async (dispatch, getState) => {
     const uid = getState().users.uid;
