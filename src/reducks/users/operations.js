@@ -187,6 +187,7 @@ export const savefavo = (addedfavo) => {
       .collection("favo")
       .doc(addedfavo.id);
     addedfavo["favoId"] = favoRef.id;
+    addedfavo["uid"] = uid;
 
     await favoRef.set(addedfavo, { merge: true });
 

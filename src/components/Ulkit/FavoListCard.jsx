@@ -42,7 +42,18 @@ const ListCard = (props) => {
 
   const [favo, setFavo] = useState(props.favo);
 
-  const username = props.username;
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    if (props.uid !== undefined) {
+      const usersRef = db.collection("users").doc(props.uid);
+      usersRef.get().then((doc) => {
+        const data = doc.data();
+        const userName = data.username;
+        setUserName(userName);
+      });
+    }
+  }, [props.uid]);
 
   useEffect(() => {
     const favoRef = db
@@ -75,7 +86,7 @@ const ListCard = (props) => {
         videoid: props.videoid,
         youtubeurl: props.youtubeurl,
         favo: newfavo,
-        username: username,
+        username: userName,
       })
     );
   };
@@ -104,7 +115,7 @@ const ListCard = (props) => {
         </Typography>
         <div className="spacer--extra-extra-small" />
         <div className="right-bottom-position">
-          ユーザー名{username}
+          ユーザー名{userName}
           <IconButton
             onClick={() => {
               addFavo();
