@@ -18,6 +18,8 @@ const MovieMemo = (props) => {
     id = id.split("/")[1];
   }
 
+  console.log(id);
+
   const videoid = props.location.state.videoid;
 
   const youtubeurl = `https://www.youtube.com/embed/${videoid}`;
@@ -61,8 +63,8 @@ const MovieMemo = (props) => {
   }, []);
 
   return (
-    <section className="flex display-block">
-      <div className="half-width ">
+    <section className="editflex">
+      <div className="edit-half-width  ">
         <MovieCard url={youtubeurl} />
       </div>
       <div className="section-container-narrow-top  half-width ">
@@ -81,7 +83,6 @@ const MovieMemo = (props) => {
         <div className="spacer--extra-extra-small" />
         <img src={thumenail + "/default.jpg"} alt="thumenail" />
         <div className="spacer--extra-extra-small" />
-        <p>URL　:　{thumenail + "/default.jpg"} </p>
         <div className="spacer--small" />
         <SelectBox
           label={"カテゴリー"}

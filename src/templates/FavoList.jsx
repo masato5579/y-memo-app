@@ -9,6 +9,7 @@ const FavoList = () => {
   const selector = useSelector((state) => state);
   const favos = getFavos(selector);
 
+  //favoの取得
   useEffect(() => {
     dispatch(fetchFavos());
   }, [dispatch]);

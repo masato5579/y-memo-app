@@ -17,7 +17,7 @@ const Reset = () => {
   );
 
   return (
-    <div className="section-container-narrow full-height ">
+    <div className="section-container-narrow">
       <div className="width-sixty">
         <h2 className="heading-one center ">＊パスワードリセット＊</h2>
         <div className="spacer--medium" />

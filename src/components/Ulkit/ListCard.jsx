@@ -18,22 +18,34 @@ import { getUserId } from "../../reducks/users/selectors";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    height: 200,
+    height: 250,
     alignItems: "center",
     justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      height: "auto",
+    },
   },
   details: {
     display: "flex",
     flexDirection: "column",
   },
   cover: {
-    width: 280,
-    height: 200,
+    minWidth: 288,
+    height: 250,
   },
   content: {
     width: "100%",
-    height: 200,
+    height: 250,
     position: "relative",
+  },
+  icons: {
+    position: "absolute",
+    right: "10px",
+    top: "180px",
+  },
+  icon: {
+    textAlign: "right",
   },
 }));
 
@@ -118,28 +130,33 @@ const ListCard = (props) => {
         >
           {props.memo}
         </Typography>
-        <div className="spacer--extra-extra-small" />
-        <div className="right-bottom-position">
-          ユーザー名{userName}
-          <IconButton
-            onClick={() => {
-              addFavo();
-            }}
-          >
-            <FavoriteIcon style={{ color: favo ? "red" : "#000" }} />
-          </IconButton>
-          <IconButton
-            onClick={() => dispatch(push("/moviememo/edit/" + props.id))}
-          >
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            onClick={() => {
-              dispatch(deleteMemo(props.id));
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
+        <div className="spacer--extra-small " />
+        <div className="spacer--extra-small " />
+        <div className={classes.icons}>
+          <div className={classes.username}>
+            <p>ユーザー名{userName}</p>
+          </div>
+          <div className={classes.icon}>
+            <IconButton
+              onClick={() => {
+                addFavo();
+              }}
+            >
+              <FavoriteIcon style={{ color: favo ? "red" : "#000" }} />
+            </IconButton>
+            <IconButton
+              onClick={() => dispatch(push("/moviememo/edit/" + props.id))}
+            >
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                dispatch(deleteMemo(props.id));
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </div>
         </div>
       </CardContent>
     </Card>

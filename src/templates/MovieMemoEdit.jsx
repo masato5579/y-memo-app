@@ -77,8 +77,8 @@ const MovieMemoEdit = (props) => {
   }, []);
 
   return (
-    <section className="flex display-block">
-      <div className="half-width ">
+    <section className="editflex ">
+      <div className="edit-half-width  ">
         <MovieCard url={youtubeurl} />
       </div>
       <div className="section-container-narrow-top half-width ">
@@ -97,7 +97,6 @@ const MovieMemoEdit = (props) => {
         <div className="spacer--extra-extra-small" />
         <img src={thumenail + "/default.jpg"} alt="thumenail" />
         <div className="spacer--extra-extra-small" />
-        <p>URL　:　{thumenail + "/default.jpg"} </p>
         <div className="spacer--small" />
         <SelectBox
           label={"カテゴリー"}

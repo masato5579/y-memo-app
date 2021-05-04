@@ -5,6 +5,7 @@ import { deleteMemoAction, fetchMemosAction } from "./actions";
 const memosRef = db.collection("memos");
 const usersRef = db.collection("users");
 
+//memoの削除処理
 export const deleteMemo = (id) => {
   return async (dispatch, getState) => {
     let result = window.confirm(
@@ -33,6 +34,7 @@ export const deleteMemo = (id) => {
   };
 };
 
+//Memosコレクションの参照
 export const fetchMemos = (category) => {
   return async (dispatch) => {
     let query = memosRef.orderBy("updated_at", "desc");
@@ -51,6 +53,7 @@ export const fetchMemos = (category) => {
   };
 };
 
+//メモの保存処理
 export const saveMemo = (
   id,
   title,

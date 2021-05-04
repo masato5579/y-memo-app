@@ -41,7 +41,7 @@ const SignUp = () => {
   );
 
   return (
-    <div className="section-container-narrow full-height ">
+    <div className="section-container-narrow  ">
       <div className="width-sixty">
         <h2 className="heading-one center ">＊アカウント登録＊</h2>
         <div className="spacer--medium" />

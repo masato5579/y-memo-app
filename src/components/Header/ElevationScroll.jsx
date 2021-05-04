@@ -2,6 +2,7 @@ import React from "react";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import PropTypes from "prop-types";
 
+//Headerの上部固定（スクロール）用
 const ElevationScroll = (props) => {
   const { children, window } = props;
 

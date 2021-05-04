@@ -17,4 +17,5 @@ export const getUserName = createSelector(
   (state) => state.username
 );
 
+//favoの取得
 export const getFavos = createSelector([usersSelector], (state) => state.favos);
