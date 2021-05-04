@@ -22,6 +22,7 @@ const MovieMemoEdit = (props) => {
   const [title, setTitle] = useState(""),
     [memo, setMemo] = useState(""),
     [category, setCategory] = useState(""),
+    [categories, setCategories] = useState([]),
     [videoid, setVideoid] = useState(""),
     [youtubeurl, setYoutubeurl] = useState(""),
     [thumenail, setThumenail] = useState("");
@@ -40,21 +41,6 @@ const MovieMemoEdit = (props) => {
     [setMemo]
   );
 
-  const categories = [
-    {
-      id: "music",
-      name: "音楽",
-    },
-    {
-      id: "variety",
-      name: "お笑い",
-    },
-    {
-      id: "anime",
-      name: "アニメ",
-    },
-  ];
-
   useEffect(() => {
     if (id !== "") {
       db.collection("memos")
@@ -71,6 +57,24 @@ const MovieMemoEdit = (props) => {
         });
     }
   }, [id]);
+
+  useEffect(() => {
+    db.collection("categories")
+      .orderBy("order", "asc")
+      .get()
+      .then((snapshots) => {
+        const list = [];
+        snapshots.forEach((snapshot) => {
+          const data = snapshot.data();
+          list.push({
+            id: data.id,
+            name: data.name,
+          });
+        });
+        setCategories(list);
+        console.log(list);
+      });
+  }, []);
 
   return (
     <section className="flex display-block">

@@ -12,6 +12,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import HomeIcon from "@material-ui/icons/Home";
 import NoteIcon from "@material-ui/icons/Note";
+import CategoryIcon from "@material-ui/icons/Category";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { TextInput } from "../Ulkit/index";
 import { useDispatch } from "react-redux";
@@ -72,10 +73,17 @@ const ClosableDrawer = (props) => {
     },
     {
       func: selectMenu,
-      label: "メモ一覧",
+      label: "自分のメモ",
       icon: <NoteIcon />,
       id: "memolist",
       value: "/moviememo/list",
+    },
+    {
+      func: selectMenu,
+      label: "カテゴリ別",
+      icon: <CategoryIcon />,
+      id: "category",
+      value: "/category",
     },
     {
       func: selectMenu,
