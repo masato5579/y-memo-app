@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { db } from "../../firebase/index";
-import { DescriptionCard } from "./index";
-import Button from "@material-ui/core/Button";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { push } from "connected-react-router";

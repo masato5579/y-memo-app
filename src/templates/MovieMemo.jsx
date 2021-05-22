@@ -18,8 +18,6 @@ const MovieMemo = (props) => {
     id = id.split("/")[1];
   }
 
-  console.log(id);
-
   const videoid = props.location.state.videoid;
 
   const youtubeurl = `https://www.youtube.com/embed/${videoid}`;

@@ -51,6 +51,7 @@ const PcMemoMethod = () => {
               pcmemomethod.map((pcmemo) => (
                 <div key={pcmemo.id}>
                   <DescriptionCard
+                    key={pcmemo.id}
                     url={pcmemo.url}
                     heading={pcmemo.heading}
                     link={pcmemo.link}

@@ -158,6 +158,10 @@ body {
 }
 
 /* Header */
+/* .header-padding {
+  padding: 70px 0 0 0;
+} */
+
 .header-padding {
   padding: 70px 0 0 0;
 }
@@ -166,7 +170,6 @@ body {
 .editflex {
   display: flex;
   justify-content: space-between;
-  height: 100vh;
 }
 
 .edit-half-width {

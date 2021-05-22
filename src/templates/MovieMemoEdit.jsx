@@ -55,8 +55,10 @@ const MovieMemoEdit = (props) => {
           });
         });
         setCategories(list);
-        console.log(list);
       });
+  }, []);
+
+  useEffect(() => {
     if (id !== "") {
       db.collection("memos")
         .doc(id)
@@ -65,14 +67,13 @@ const MovieMemoEdit = (props) => {
           const data = snapshot.data();
           setTitle(data.title);
           setMemo(data.memo);
-          console.log(data.category);
           setCategory(data.category);
           setVideoid(data.videoid);
           setYoutubeurl(data.youtubeurl);
           setThumenail(data.thumenail);
         });
     }
-  }, []);
+  }, [id]);
 
   return (
     <section className="editflex ">

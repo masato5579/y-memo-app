@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import PersonIcon from "@material-ui/icons/Person";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import DescriptionIcon from "@material-ui/icons/Description";
 import HomeIcon from "@material-ui/icons/Home";
 import NoteIcon from "@material-ui/icons/Note";
 import CategoryIcon from "@material-ui/icons/Category";
@@ -86,6 +87,13 @@ const ClosableDrawer = (props) => {
       icon: <CategoryIcon />,
       id: "category",
       value: "/category",
+    },
+    {
+      func: selectMenu,
+      label: "使い方",
+      icon: <DescriptionIcon />,
+      id: "description",
+      value: "/description",
     },
     {
       func: selectMenu,
