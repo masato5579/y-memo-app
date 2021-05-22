@@ -12,6 +12,13 @@ import {
   Profile,
   Category,
 } from "./templates";
+import {
+  PcStart,
+  PsStart,
+  PcMemoMethod,
+  PsMemoMethod,
+  Description,
+} from "./components/Description";
 import Auth from "./Auth";
 
 const Router = () => {
@@ -29,6 +36,19 @@ const Router = () => {
         <Route path={"/favorite"} component={FavoList} />
         <Route path={"/profile"} component={Profile} />
         <Route path={"/category"} component={Category} />
+        <Route exact path={"/description/pcstart"} component={PcStart} />
+        <Route exact path={"/description/psstart"} component={PsStart} />
+        <Route
+          exact
+          path={"/description/pcmemomethod"}
+          component={PcMemoMethod}
+        />
+        <Route
+          exact
+          path={"/description/psmemomethod"}
+          component={PsMemoMethod}
+        />
+        <Route exact path={"/description"} component={Description} />
       </Auth>
     </Switch>
   );
