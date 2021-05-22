@@ -51,6 +51,7 @@ const PsStart = () => {
               psstarts.map((psstart) => (
                 <div key={psstart.id}>
                   <DescriptionCard
+                    key={psstart.id}
                     url={psstart.url}
                     heading={psstart.heading}
                     link={psstart.link}

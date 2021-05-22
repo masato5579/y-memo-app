@@ -51,6 +51,7 @@ const PcStart = () => {
               pcstarts.map((pcstart) => (
                 <div key={pcstart.id}>
                   <DescriptionCard
+                    key={pcstart.id}
                     url={pcstart.url}
                     heading={pcstart.heading}
                     link={pcstart.link}

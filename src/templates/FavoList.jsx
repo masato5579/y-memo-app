@@ -25,6 +25,7 @@ const FavoList = () => {
             <FavoListCard
               thumenail={favo.thumenail}
               id={favo.id}
+              key={favo.id}
               title={favo.title}
               memo={favo.memo}
               category={favo.category}

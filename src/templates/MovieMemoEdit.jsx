@@ -55,7 +55,6 @@ const MovieMemoEdit = (props) => {
           });
         });
         setCategories(list);
-        console.log(list);
       });
   }, []);
 
@@ -68,7 +67,6 @@ const MovieMemoEdit = (props) => {
           const data = snapshot.data();
           setTitle(data.title);
           setMemo(data.memo);
-          console.log(data.category);
           setCategory(data.category);
           setVideoid(data.videoid);
           setYoutubeurl(data.youtubeurl);

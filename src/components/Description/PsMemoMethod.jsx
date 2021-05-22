@@ -51,6 +51,7 @@ const PsMemoMethod = () => {
               psmemomethod.map((psmemo) => (
                 <div key={psmemo.id}>
                   <DescriptionCard
+                    key={psmemo.id}
                     url={psmemo.url}
                     heading={psmemo.heading}
                     link={psmemo.link}
