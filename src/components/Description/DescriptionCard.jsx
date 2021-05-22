@@ -1,8 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -28,8 +26,8 @@ const DescriptionCard = (props) => {
       </div>
       <div className="spacer--medium" />
       <div className="descrption-img ">
-        <a href={props.url} target="_blank">
-          <img src={props.url} />
+        <a href={props.url} target="_blank" rel="noreferrer">
+          <img src={props.url} alt="YoutubeMemo手順の画像" />
         </a>
       </div>
     </div>

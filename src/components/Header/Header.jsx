@@ -57,7 +57,7 @@ const Header = (props) => {
   );
 
   return (
-    <div>
+    <div className="header-padding-bottom">
       <ElevationScroll {...props}>
         <AppBar className={classes.root}>
           <Toolbar className={classes.toolBar}>

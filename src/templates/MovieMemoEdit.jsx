@@ -57,6 +57,9 @@ const MovieMemoEdit = (props) => {
         setCategories(list);
         console.log(list);
       });
+  }, []);
+
+  useEffect(() => {
     if (id !== "") {
       db.collection("memos")
         .doc(id)
@@ -72,7 +75,7 @@ const MovieMemoEdit = (props) => {
           setThumenail(data.thumenail);
         });
     }
-  }, []);
+  }, [id]);
 
   return (
     <section className="editflex ">

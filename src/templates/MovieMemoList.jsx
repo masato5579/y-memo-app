@@ -17,7 +17,7 @@ const MovieMemoList = () => {
 
   useEffect(() => {
     dispatch(fetchMemos(category));
-  }, [query]);
+  }, [dispatch, category]);
 
   return (
     <section className="ninety-width-center">
