@@ -42,23 +42,6 @@ const MovieMemoEdit = (props) => {
   );
 
   useEffect(() => {
-    if (id !== "") {
-      db.collection("memos")
-        .doc(id)
-        .get()
-        .then((snapshot) => {
-          const data = snapshot.data();
-          setTitle(data.title);
-          setMemo(data.memo);
-          setCategory(data.category);
-          setVideoid(data.videoid);
-          setYoutubeurl(data.youtubeurl);
-          setThumenail(data.thumenail);
-        });
-    }
-  }, [id]);
-
-  useEffect(() => {
     db.collection("categories")
       .orderBy("order", "asc")
       .get()
@@ -74,6 +57,21 @@ const MovieMemoEdit = (props) => {
         setCategories(list);
         console.log(list);
       });
+    if (id !== "") {
+      db.collection("memos")
+        .doc(id)
+        .get()
+        .then((snapshot) => {
+          const data = snapshot.data();
+          setTitle(data.title);
+          setMemo(data.memo);
+          console.log(data.category);
+          setCategory(data.category);
+          setVideoid(data.videoid);
+          setYoutubeurl(data.youtubeurl);
+          setThumenail(data.thumenail);
+        });
+    }
   }, []);
 
   return (
@@ -125,8 +123,8 @@ const MovieMemoEdit = (props) => {
                 id,
                 title,
                 memo,
-                videoid,
                 category,
+                videoid,
                 youtubeurl,
                 thumenail
               )
